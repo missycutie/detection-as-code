@@ -1,4 +1,4 @@
-version: '3'
+version: '3.5'
 
 networks:
   dacnet: 
@@ -18,8 +18,8 @@ services:
         hostname: gitlab    
         environment:
             GITLAB_OMNIBUS_CONFIG: |
-                external_url '$EXTERNAL_URL'
-                gitlab_rails['initial_root_password']='$DEFAULT_PASSWORD'
+                external_url 'http://gitlab'
+                gitlab_rails['initial_root_password']='x'
         container_name: gitlab
         image: 'gitlab/gitlab-ce:latest'
     gitlab-runner:
@@ -48,7 +48,7 @@ services:
         container_name: splunk
         environment:
             - SPLUNK_START_ARGS=--accept-license
-            - SPLUNK_PASSWORD=$DEFAULT_PASSWORD
+            - SPLUNK_PASSWORD=x
             - SPLUNK_APPS_URL=https://botsdataset.s3.amazonaws.com/botsv3/botsv3_data_set.tgz
         container_name: splunk-dac
         image: 'splunk/splunk:latest'
